@@ -79,17 +79,16 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         let nome = faker.name.firstName()
         let sobrenome = faker.name.lastName()
         let empresa = faker.company.name()
-        let pais = faker.address.country()
-   
+           
         cy.novoProduto('Abominable Hoodie', 'XS', 'Blue', '2') //comando pers
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click() 
-        PaginaFaturamento.preencherDadosFaturamento(nome, sobrenome, empresa, pais, 'Rua Rocha Pombo','Casa','Londrina', 'Paraná','86135900', '4396541899','laviniateste@teste.com')
+        PaginaFaturamento.preencherDadosFaturamento(nome, sobrenome, empresa, 'Brasil', 'Rua Rocha Pombo','Casa','Londrina', 'Paraná','86135900', '4396541899','laviniateste@teste.com')
         cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
         
     });
 
-    it.only('Deve escolher produtos e finalizar o pedido utilizando comandos avançados e page objects (faker)', () => {  /////OK////
+    it('Deve escolher produtos e finalizar o pedido utilizando comandos avançados e page objects (faker)', () => {  /////OK////
         cy.novoProduto('Abominable Hoodie', 'XS', 'Blue', '2') //comando pers
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click() 
